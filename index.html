@@ -941,17 +941,10 @@ async function generate() {
   out.className = 'output-box loading';
   out.textContent = 'Writing your message…';
   try {
-    const APIKEY = 'PASTE_YOUR_API_KEY_HERE';
-    const r = await fetch('https://api.anthropic.com/v1/messages', {
+    const r = await fetch('/.netlify/functions/generate', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': APIKEY,
-        'anthropic-version': '2023-06-01'
-      },
+      headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 1000,
         messages: [{role:'user', content: buildPrompt()}]
       })
     });
@@ -1051,17 +1044,10 @@ async function generateQuick() {
   out.textContent = 'Writing your message…';
   wrap.scrollIntoView({behavior:'smooth', block:'nearest'});
   try {
-    const APIKEY = 'PASTE_YOUR_API_KEY_HERE';
-    const r = await fetch('https://api.anthropic.com/v1/messages', {
+    const r = await fetch('/.netlify/functions/generate', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': APIKEY,
-        'anthropic-version': '2023-06-01'
-      },
+      headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 1000,
         messages: [{role:'user', content: buildQuickPrompt()}]
       })
     });
